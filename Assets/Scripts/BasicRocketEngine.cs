@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BasicRocketEngine : MonoBehaviour
+{
+	[SerializeField]
+	GameObject engine;
+	[SerializeField]
+	[Range(0, 100)]
+	float force;
+
+	new Rigidbody rigidbody;
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		rigidbody = GetComponent<Rigidbody>();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (Input.GetKey(KeyCode.LeftShift)) force += Time.deltaTime*10;
+		if (Input.GetKey(KeyCode.LeftControl)) force -= Time.deltaTime*10;
+	}
+	private void FixedUpdate()
+	{
+		rigidbody.AddForceAtPosition(engine.transform.up * force, engine.transform.position);
+	}
+	void AddPropulsionForce(Vector3 force)
+	{
+		AddRelativeForceAtPosition(force, Vector3.down);
+	}
+	void AddRelativeForceAtPosition(Vector3 force, Vector3 position)
+	{
+		rigidbody.AddForceAtPosition(
+			transform.TransformDirection(force), 
+			transform.TransformPoint(position));
+	}
+}

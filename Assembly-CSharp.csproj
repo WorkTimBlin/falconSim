@@ -53,10 +53,13 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BasicPropulsion.cs" />
-    <Compile Include="Assets\Scripts\old\legJointBehaviour.cs" />
-    <Compile Include="Assets\Scripts\IRetractable.cs" />
     <Compile Include="Assets\Scripts\Leg.cs" />
+    <Compile Include="Assets\Scripts\BasicRocketEngine.cs" />
+    <Compile Include="Assets\Scripts\old\legJointBehaviour.cs" />
+    <Compile Include="Assets\Scripts\IReRetractable.cs" />
+    <Compile Include="Assets\Scripts\LegsControl.cs" />
+    <Compile Include="Assets\Scripts\EngineControl.cs" />
+    <Compile Include="Assets\Scripts\RocketEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

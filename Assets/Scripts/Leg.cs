@@ -31,8 +31,6 @@ public class Leg : MonoBehaviour, IReRetractable
 
 	Coroutine currentCoroutine;
 
-	bool retracted = false;
-
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -42,11 +40,7 @@ public class Leg : MonoBehaviour, IReRetractable
 	// Update is called once per frame
 	void Update()
 	{
-		if (!retracted)
-		{
-			StartRetraction();
-			retracted = true;
-		}
+		
 	}
 
 	public void StartExtention()
