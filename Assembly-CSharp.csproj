@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,13 +53,21 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Leg.cs" />
-    <Compile Include="Assets\Scripts\BasicRocketEngine.cs" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\RocketParts\Leg.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\RocketEngineTilt.cs" />
+    <Compile Include="Assets\Scripts\UserControls\LegsControl.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Flame.cs" />
+    <Compile Include="Assets\Scripts\Autopilot\BasicSlower.cs" />
     <Compile Include="Assets\Scripts\old\legJointBehaviour.cs" />
-    <Compile Include="Assets\Scripts\IReRetractable.cs" />
-    <Compile Include="Assets\Scripts\LegsControl.cs" />
-    <Compile Include="Assets\Scripts\EngineControl.cs" />
-    <Compile Include="Assets\Scripts\RocketEngine.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltable.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\IRocketEngine.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\IReRetractable.cs" />
+    <Compile Include="Assets\Scripts\UserControls\EngineControl.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\RocketEngine.cs" />
+    <Compile Include="Assets\Scripts\CustomAttributes\ReadOnlyFieldAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
