@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Leg : MonoBehaviour, IReRetractable
 {
+	public float ExpectedExtendingTime => 
+		fullExtendedPosition - fullRetractedPosition / retractionSpeed;
+	public float ExpectedRetractingTime => 
+		ExpectedExtendingTime;
+
 	[SerializeField]
 	float fullExtendedPosition = 115;
 	[SerializeField]
@@ -26,6 +31,8 @@ public class Leg : MonoBehaviour, IReRetractable
 			fullRetractedPosition +
 			(fullExtendedPosition - fullRetractedPosition) * value / 100;
 	}
+
+
 	[SerializeField]
 	float retractionSpeed = 10;
 

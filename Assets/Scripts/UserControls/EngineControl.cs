@@ -27,7 +27,6 @@ public class EngineControl : MonoBehaviour
 	[SerializeField]
 	KeyCode lower;
 
-
 	IRocketEngine engine;
 	ITiltable engineTilt;
 
@@ -36,6 +35,7 @@ public class EngineControl : MonoBehaviour
 	{
 		engine = engineObject.GetComponent<IRocketEngine>();
 		engineTilt = engineTiltObject.GetComponent<ITiltable>();
+		
 	}
 
 	// Update is called once per frame
@@ -52,6 +52,8 @@ public class EngineControl : MonoBehaviour
 		if (Input.GetKey(lower))
 			engine.Consumption -= propulsionChangeSpeed * Time.deltaTime; 
 	}
+
+	
 
 	void UpdateTilt()
 	{
