@@ -7,12 +7,6 @@ using UnityEngine;
 /// </summary>
 public interface IPhasePositionProvider
 {
-    PhaseVector<Vector3> Position { get; }
-    PhaseVector<Quaternion> Rotation { get; }
-}
-
-public struct PhaseVector<T>
-{
-    public T position;
-    public T velocity;
+    Vector3 Position { get; }
+    Quaternion Rotation { get; }
 }

@@ -3,22 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BasicPhasePosProvider : MonoBehaviour, IPhasePositionProvider
+public class BasicPhasePosProvider : MonoBehaviour
 {
-
-	public PhaseVector<Vector3> Position =>
-		new PhaseVector<Vector3>()
-		{
-			position = transform.position,
-			velocity = positionVelocity
-		};
-	public PhaseVector<Quaternion> Rotation =>
-		new PhaseVector<Quaternion>()
-		{
-			position = transform.rotation,
-			velocity = rotationVelocity
-		};
-
 	private Vector3 positionVelocity;
 	[SerializeField]
 	private Quaternion rotationVelocity;

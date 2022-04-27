@@ -9,7 +9,7 @@ public class EngineControl : MonoBehaviour
 	[SerializeField]
 	GameObject engineTiltObject;
 	[SerializeField]
-	float propulsionChangeSpeed = 10;
+	float propulsionChangeSpeed = 20;
 
 	[Header("Tilt Keys")]
 	[SerializeField]
@@ -26,6 +26,9 @@ public class EngineControl : MonoBehaviour
 	KeyCode higher;
 	[SerializeField]
 	KeyCode lower;
+	[SerializeField]
+	float fuelFeed = 20;
+
 
 	IRocketEngine engine;
 	ITiltable engineTilt;
@@ -47,10 +50,12 @@ public class EngineControl : MonoBehaviour
 
 	void UpdatePropulsion()
 	{
+		engine.Consumption = fuelFeed;
 		if (Input.GetKey(higher))
 			engine.Consumption += propulsionChangeSpeed * Time.deltaTime;
 		if (Input.GetKey(lower))
-			engine.Consumption -= propulsionChangeSpeed * Time.deltaTime; 
+			engine.Consumption -= propulsionChangeSpeed * Time.deltaTime;
+		fuelFeed = engine.Consumption;
 	}
 
 	

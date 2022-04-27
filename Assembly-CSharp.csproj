@@ -57,10 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\RocketParts\Leg.cs" />
+    <Compile Include="Assets\Scripts\CustomAttributes\GraphicRepresentField.cs" />
     <Compile Include="Assets\Scripts\RocketParts\RocketEngineTilt.cs" />
     <Compile Include="Assets\Scripts\UserControls\LegsControl.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Flame.cs" />
-    <Compile Include="Assets\Scripts\Autopilot\BasicSlower.cs" />
+    <Compile Include="Assets\Scripts\Autopilot\VerticalStabiliser.cs" />
     <Compile Include="Assets\Scripts\Autopilot\IPhasePositionProvider.cs" />
     <Compile Include="Assets\Scripts\old\legJointBehaviour.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltable.cs" />
