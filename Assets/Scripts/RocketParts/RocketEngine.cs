@@ -40,7 +40,7 @@ public class RocketEngine : MonoBehaviour, IRocketEngine
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		Propulse();
 	}
@@ -48,7 +48,7 @@ public class RocketEngine : MonoBehaviour, IRocketEngine
 	void Propulse()
 	{
 		rocketBody.AddForceAtPosition(
-			transform.up * Propultion, 
+			transform.up * Propultion * Time.fixedDeltaTime, 
 			transform.position);
 	}
 }

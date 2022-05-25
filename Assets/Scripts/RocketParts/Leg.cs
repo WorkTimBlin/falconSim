@@ -32,6 +32,7 @@ public class Leg : MonoBehaviour, IReRetractable
 			(fullExtendedPosition - fullRetractedPosition) * value / 100;
 	}
 
+	public IReRetractable.StateEnum State { get; private set; }
 
 	[SerializeField]
 	float retractionSpeed = 10;
@@ -42,17 +43,33 @@ public class Leg : MonoBehaviour, IReRetractable
 	{
 		if(currentCoroutine != null) 
 			StopCoroutine(currentCoroutine);
-		currentCoroutine = StartCoroutine(ExtentionCoroutine(100));
+		currentCoroutine = StartCoroutine(ExtentionCoroutine());
+		State = IReRetractable.StateEnum.Extending;
 	}
 
 	public void StartRetraction()
 	{
 		if(currentCoroutine != null) 
 			StopCoroutine(currentCoroutine);
-		currentCoroutine = StartCoroutine(ExtentionCoroutine(0));
+		currentCoroutine = StartCoroutine(RetractionCoroutine());
 	}
 
-	IEnumerator ExtentionCoroutine(float extentionPercent)
+	IEnumerator ExtentionCoroutine()
+	{
+		State = IReRetractable.StateEnum.Extending;
+		foreach (object movingFrame in MovingCoroutine(100)) 
+			yield return movingFrame;
+		State = IReRetractable.StateEnum.Extended;
+	}
+	IEnumerator RetractionCoroutine()
+	{
+		State = IReRetractable.StateEnum.Retracting;
+		foreach (object movingFrame in MovingCoroutine(0)) 
+			yield return movingFrame;
+		State = IReRetractable.StateEnum.Retracted;
+	}
+
+	IEnumerable MovingCoroutine(float extentionPercent)
 	{
 		while (CurrentExtentionPercent != extentionPercent)
 		{

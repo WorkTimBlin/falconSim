@@ -11,6 +11,8 @@ public class LegsControl : MonoBehaviour
 	KeyCode retract;
 	[SerializeField]
 	KeyCode extend;
+	[SerializeField]
+	KeyCode toggle;
 
 	List<IReRetractable> reRetractables;
 	// Start is called before the first frame update
@@ -38,6 +40,16 @@ public class LegsControl : MonoBehaviour
 			foreach (IReRetractable reRetractable in reRetractables)
 			{
 				reRetractable.StartExtention();
+			}
+		}
+		if (Input.GetKeyDown(toggle))
+		{
+			foreach (IReRetractable reRetractable in reRetractables)
+			{
+				if(reRetractable.State < IReRetractable.StateEnum.Extending)
+					reRetractable.StartExtention();
+				else if(reRetractable.State > IReRetractable.StateEnum.Retracting)
+					reRetractable.StartRetraction();
 			}
 		}
 	}
