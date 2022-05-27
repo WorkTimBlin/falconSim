@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 548142111641545134}
   - component: {fileID: 1118133224}
   - component: {fileID: 1000154751}
+  - component: {fileID: 151233370}
   m_Layer: 0
   m_Name: engine
   m_TagString: Untagged
@@ -472,9 +473,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentConsumtion: 0
-  maxPropultion: 20
+  maxPropultion: 10
   minConsumption: 0
-  maxConsumption: 50
+  maxConsumption: 100
 --- !u!114 &1000154751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +491,102 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0}
   maxAngle: 50
   tangentSpeed: 50
+--- !u!82 &151233370
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548142111641545135}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &548142111860304277
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +944,7 @@ GameObject:
   - component: {fileID: 8563531372456059565}
   - component: {fileID: 6010464649707388765}
   - component: {fileID: 1528386092}
+  - component: {fileID: 1528386100}
   m_Layer: 7
   m_Name: falcon1
   m_TagString: Untagged
@@ -935,7 +1033,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -975,6 +1073,7 @@ MonoBehaviour:
   back: 115
   higher: 304
   lower: 306
+  fuelFeed: 98.10001
 --- !u!114 &1528386092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,3 +1093,24 @@ MonoBehaviour:
   - {fileID: 548142111034024894}
   retract: 99
   extend: 118
+  toggle: 0
+--- !u!114 &1528386100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8563531372456059566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636de74b82bb5b74abfcdbfd316b68d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idealLandingSpeed: 0.5
+  engineObject: {fileID: 548142111641545135}
+  rocketRigidbody: {fileID: 548142112294790331}
+  verticalDeviationCoeficient: 1
+  velocityCoeficient: 0.5
+  antiDeviationVector: {x: 0, y: 0}
+  antiVelocityVector: {x: 0, y: 0}
+  rect: {fileID: 0}

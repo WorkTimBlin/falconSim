@@ -48,7 +48,7 @@ public class RocketEngine : MonoBehaviour, IRocketEngine
 	void Propulse()
 	{
 		rocketBody.AddForceAtPosition(
-			transform.up * Propultion * Time.fixedDeltaTime, 
+			transform.up * Propultion, 
 			transform.position);
 	}
 }

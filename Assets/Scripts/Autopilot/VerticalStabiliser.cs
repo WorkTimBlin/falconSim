@@ -21,10 +21,10 @@ public class VerticalStabiliser : MonoBehaviour
 	[SerializeField]
 	float velocityCoeficient = 1;
 	[SerializeField]
-	[GraphicRepresentField(50)]
+	//[GraphicRepresentField(50)]
 	Vector2 antiDeviationVector;
 	[SerializeField]
-	[GraphicRepresentField(50)]
+	//[GraphicRepresentField(50)]
 	Vector2 antiVelocityVector;
 	[SerializeField]
 	Texture2D rect;
@@ -36,28 +36,28 @@ public class VerticalStabiliser : MonoBehaviour
 	{
 		engine = engineObject.GetComponent<IRocketEngine>();
 		engineTilt = engineObject.GetComponent<ITiltable>();
+		rocketRigidbody.velocity = Vector3.zero;
 	}
 
 	private void Update()
 	{
 		Vector3 globalVertical = 
 			transform.InverseTransformDirection(Vector3.up);
-		Vector3 localAngularVelocity = 
-			transform.TransformDirection(rocketRigidbody.angularVelocity);
+		Vector3 localAngularVelocity =
+			transform.InverseTransformDirection(rocketRigidbody.angularVelocity);
+		
 		Vector2 localBottomVelocity =
-			new Vector2(-localAngularVelocity.z, localAngularVelocity.x);
-
+			new Vector2(localAngularVelocity.z, localAngularVelocity.x);
 		antiDeviationVector = 
 			new Vector2(globalVertical.x, -globalVertical.z) *
 			engineTilt.MaxAngle;
-		antiVelocityVector = 
+		antiVelocityVector = Vector2.ClampMagnitude(
 			localBottomVelocity * 
-			engineTilt.MaxAngle;
+			engineTilt.MaxAngle, 50);
 
 		engineTilt.DesiredPosition =
 			antiDeviationVector * verticalDeviationCoeficient + 
 			antiVelocityVector * velocityCoeficient;
-		Debug.DrawRay(transform.position, globalVertical, Color.green);
 	}
 }
 

@@ -1,0 +1,8 @@
+plan: split the autopilot in tactic and strategic modules, 
+where the tactic module calculates the desired position 
+for the next timeframe, given the long-term target position, 
+and strategic, given the vehicle configuration and tactic 
+module output, defines the way of achieving this position.
+
+i should split the desired thrust os axis so i can more easely 
+calculate the desired thrust at the moment.
