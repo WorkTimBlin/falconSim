@@ -13,6 +13,12 @@ public class Leg : MonoBehaviour, IReRetractable
 	float fullExtendedPosition = 115;
 	[SerializeField]
 	float fullRetractedPosition = 0;
+	[SerializeField]
+	float retractionSpeed = 10;
+	[SerializeField]
+	bool startExtended;
+
+	Coroutine currentCoroutine;
 	float CurrentPosition
 	{
 		get => transform.localRotation.eulerAngles.z;
@@ -31,13 +37,16 @@ public class Leg : MonoBehaviour, IReRetractable
 			fullRetractedPosition +
 			(fullExtendedPosition - fullRetractedPosition) * value / 100;
 	}
-
 	public IReRetractable.StateEnum State { get; private set; }
-
-	[SerializeField]
-	float retractionSpeed = 10;
-
-	Coroutine currentCoroutine;
+	public bool StartExtended 
+	{ 
+		get => startExtended;
+		set 
+		{
+			startExtended = value;
+			AquireStartPosition();
+		} 
+	}
 
 	public void StartExtention()
 	{
@@ -86,5 +95,17 @@ public class Leg : MonoBehaviour, IReRetractable
 			yield return null;
 		}
 		currentCoroutine = null;
+	}
+
+	private void AquireStartPosition()
+	{
+		if (Application.isPlaying) return;
+		if (startExtended) CurrentPosition = fullExtendedPosition;
+		else CurrentPosition = fullRetractedPosition;
+	}
+
+	private void OnValidate()
+	{
+		AquireStartPosition();
 	}
 }

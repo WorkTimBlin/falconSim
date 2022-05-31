@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
+[ExecuteInEditMode]
 public class LegsControl : MonoBehaviour
 {
 	[SerializeField]
-	List<GameObject> legs = new List<GameObject>();
+	List<MonoBehaviour> legs;
 	[Header("Controls")]
 	[SerializeField]
 	KeyCode retract;
@@ -13,17 +15,12 @@ public class LegsControl : MonoBehaviour
 	KeyCode extend;
 	[SerializeField]
 	KeyCode toggle;
+	[SerializeField]
+	bool startExtended;
 
-	List<IReRetractable> reRetractables;
-	// Start is called before the first frame update
-	void Start()
-	{
-		reRetractables = new List<IReRetractable>() { Capacity = legs.Count };
-		foreach(GameObject leg in legs)
-		{
-			reRetractables.Add(leg.GetComponent<IReRetractable>());
-		}
-	}
+	IEnumerable<IReRetractable> reRetractables => 
+		legs.Select(
+			(x) => InterfaceValidationHelper.GetInterface<IReRetractable>(x));
 
 	// Update is called once per frame
 	void Update()
@@ -51,6 +48,14 @@ public class LegsControl : MonoBehaviour
 				else if(reRetractable.State > IReRetractable.StateEnum.Retracting)
 					reRetractable.StartRetraction();
 			}
+		}
+	}
+	private void OnValidate()
+	{
+		legs = reRetractables.Cast<MonoBehaviour>().ToList();
+		foreach (IReRetractable reRetractable in reRetractables)
+		{
+			reRetractable.StartExtended = startExtended;
 		}
 	}
 }

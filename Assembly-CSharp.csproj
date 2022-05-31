@@ -63,14 +63,16 @@
     <Compile Include="Assets\Scripts\RocketParts\Flame.cs" />
     <Compile Include="Assets\Scripts\Autopilot\VerticalStabiliser.cs" />
     <Compile Include="Assets\Scripts\Autopilot\IPhasePositionProvider.cs" />
+    <Compile Include="Assets\Scripts\UserControls\EngineTiltControl.cs" />
     <Compile Include="Assets\Scripts\old\legJointBehaviour.cs" />
-    <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltable.cs" />
-    <Compile Include="Assets\Scripts\RocketParts\Interfaces\IRocketEngine.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltableParameters.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\IRocketEngineParameters.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Interfaces\IReRetractable.cs" />
-    <Compile Include="Assets\Scripts\UserControls\EngineControl.cs" />
+    <Compile Include="Assets\Scripts\UserControls\EnginePropulsionControl.cs" />
     <Compile Include="Assets\Scripts\Autopilot\BasicPhasePosProvider.cs" />
     <Compile Include="Assets\Scripts\RocketParts\RocketEngine.cs" />
     <Compile Include="Assets\Scripts\CustomAttributes\ReadOnlyFieldAttribute.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

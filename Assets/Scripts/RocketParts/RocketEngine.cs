@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketEngine : MonoBehaviour, IRocketEngine
+public class RocketEngine : MonoBehaviour, IRocketEngineParameters
 {
 	public float Consumption
 	{

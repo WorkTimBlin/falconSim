@@ -341,12 +341,14 @@
 "Assets/Scripts/old/legJointBehaviour.cs"
 "Assets/Scripts/RocketParts/Flame.cs"
 "Assets/Scripts/RocketParts/Interfaces/IReRetractable.cs"
-"Assets/Scripts/RocketParts/Interfaces/IRocketEngine.cs"
-"Assets/Scripts/RocketParts/Interfaces/ITiltable.cs"
+"Assets/Scripts/RocketParts/Interfaces/IRocketEngineParameters.cs"
+"Assets/Scripts/RocketParts/Interfaces/ITiltableParameters.cs"
+"Assets/Scripts/RocketParts/Interfaces/ITiltController.cs"
 "Assets/Scripts/RocketParts/Leg.cs"
 "Assets/Scripts/RocketParts/RocketEngine.cs"
 "Assets/Scripts/RocketParts/RocketEngineTilt.cs"
-"Assets/Scripts/UserControls/EngineControl.cs"
+"Assets/Scripts/UserControls/EnginePropulsionControl.cs"
+"Assets/Scripts/UserControls/EngineTiltControl.cs"
 "Assets/Scripts/UserControls/LegsControl.cs"
 -langversion:9.0
 

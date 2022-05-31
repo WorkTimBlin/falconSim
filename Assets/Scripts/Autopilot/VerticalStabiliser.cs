@@ -7,37 +7,34 @@ using UnityEngine;
 /// <summary>
 /// very simple basic stabiliser, should keep the rocket vertical.
 /// </summary>
-public class VerticalStabiliser : MonoBehaviour
+public class VerticalStabiliser : MonoBehaviour, ITiltController
 {
 	[SerializeField]
 	private float idealLandingSpeed = 0.5f;
 	[SerializeField]
-	private GameObject engineObject;
+	private MonoBehaviour rocketEngine;
+	[SerializeField]
+	private MonoBehaviour engineTilt;
 	[SerializeField]
 	private Rigidbody rocketRigidbody;
+
 	[Header("controlPanel")]
 	[SerializeField]
 	float verticalDeviationCoeficient = 1;
 	[SerializeField]
-	float velocityCoeficient = 1;
-	[SerializeField]
-	//[GraphicRepresentField(50)]
+	[GraphicRepresentField(50)]
 	Vector2 antiDeviationVector;
 	[SerializeField]
-	//[GraphicRepresentField(50)]
-	Vector2 antiVelocityVector;
+	float velocityCoeficient = 1;
 	[SerializeField]
-	Texture2D rect;
+	[GraphicRepresentField(50)]
+	Vector2 antiVelocityVector;
 
-	private IRocketEngine engine;
-	private ITiltable engineTilt;
+	private IRocketEngineParameters Engine => (IRocketEngineParameters)rocketEngine;
+	private ITiltableParameters EngineTilt => (ITiltableParameters)engineTilt;
 	private float DistanceToGround => transform.position.y;
-	private void Start()
-	{
-		engine = engineObject.GetComponent<IRocketEngine>();
-		engineTilt = engineObject.GetComponent<ITiltable>();
-		rocketRigidbody.velocity = Vector3.zero;
-	}
+
+	public Vector2 ControlSignal { get; set; }
 
 	private void Update()
 	{
@@ -50,23 +47,19 @@ public class VerticalStabiliser : MonoBehaviour
 			new Vector2(localAngularVelocity.z, localAngularVelocity.x);
 		antiDeviationVector = 
 			new Vector2(globalVertical.x, -globalVertical.z) *
-			engineTilt.MaxAngle;
+			EngineTilt.MaxAngle;
 		antiVelocityVector = Vector2.ClampMagnitude(
 			localBottomVelocity * 
-			engineTilt.MaxAngle, 50);
+			EngineTilt.MaxAngle, 50);
 
-		engineTilt.DesiredPosition =
+		ControlSignal =
 			antiDeviationVector * verticalDeviationCoeficient + 
 			antiVelocityVector * velocityCoeficient;
 	}
-}
 
-public class VerticalStabilizerEditor : Editor
-{
-	public override void OnInspectorGUI()
+	private void OnValidate()
 	{
-		base.OnInspectorGUI();
-
-
+		rocketEngine = rocketEngine?.GetComponent<IRocketEngineParameters>() as MonoBehaviour;
+		engineTilt = engineTilt?.GetComponent<ITiltableParameters>() as MonoBehaviour;
 	}
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketEngineTilt : MonoBehaviour, ITiltable
+public class RocketEngineTilt : MonoBehaviour, ITiltableParameters
 {
 
 	public float MaxAngle => maxAngle;
@@ -28,13 +28,12 @@ public class RocketEngineTilt : MonoBehaviour, ITiltable
 	public Vector2 DesiredPosition
 	{
 		get => desiredPosition;
-		set
-		{
-			if (value.sqrMagnitude > MaxAngle * MaxAngle)
-				value = value.normalized * MaxAngle;
-			desiredPosition = value;
-		}
+		set => desiredPosition = Vector2.ClampMagnitude(value, maxAngle);
 	}
+
+	[SerializeField]
+	MonoBehaviour tiltController;
+	ITiltController TiltController => (ITiltController)tiltController;
 
 	[SerializeField]
 	[ReadOnlyField]
@@ -52,6 +51,7 @@ public class RocketEngineTilt : MonoBehaviour, ITiltable
 	// Update is called once per frame
 	void Update()
     {
+		DesiredPosition = TiltController?.ControlSignal ?? Vector2.zero;
 		MoveThrustVector();
     }
 
@@ -66,4 +66,27 @@ public class RocketEngineTilt : MonoBehaviour, ITiltable
 			move.sqrMagnitude < deltaPos.sqrMagnitude ?
 			currentPosition + move : desiredPosition;
 	}
+
+	private void OnValidate()
+	{
+		tiltController = 
+			InterfaceValidationHelper.
+			GetInterfaceAsMonoBehaviour<ITiltController>(tiltController);
+	}
+}
+
+public static class InterfaceValidationHelper
+{
+	public static InterfaceT? 
+		GetInterface<InterfaceT>(MonoBehaviour monoBehaviour) 
+		where InterfaceT : class
+	{
+		return monoBehaviour as InterfaceT ??
+			monoBehaviour?.GetComponent<InterfaceT>();
+	}
+
+	public static MonoBehaviour?
+		GetInterfaceAsMonoBehaviour<InterfaceT>(MonoBehaviour monoBehaviour) 
+		where InterfaceT : class =>
+		GetInterface<InterfaceT>(monoBehaviour) as MonoBehaviour;
 }

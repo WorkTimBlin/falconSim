@@ -5,6 +5,7 @@ using UnityEngine;
 
 public interface IReRetractable: IExtendable, IRetractable
 {
+	public bool StartExtended { get; set; }
 	public new StateEnum State { get; }
 	public new enum StateEnum
 	{
