@@ -38,6 +38,9 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+
+    "st.rect-ex": "https://github.com/slavniyteo/rect-ex.git#master",
+    "st.one-line": "https://github.com/slavniyteo/one-line.git#master"
   }
 }

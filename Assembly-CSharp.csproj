@@ -62,17 +62,16 @@
     <Compile Include="Assets\Scripts\UserControls\LegsControl.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Flame.cs" />
     <Compile Include="Assets\Scripts\Autopilot\VerticalStabiliser.cs" />
-    <Compile Include="Assets\Scripts\Autopilot\IPhasePositionProvider.cs" />
+    <Compile Include="Assets\Scripts\Autopilot\LinearCombiner.cs" />
+    <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltController.cs" />
     <Compile Include="Assets\Scripts\UserControls\EngineTiltControl.cs" />
     <Compile Include="Assets\Scripts\old\legJointBehaviour.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltableParameters.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Interfaces\IRocketEngineParameters.cs" />
     <Compile Include="Assets\Scripts\RocketParts\Interfaces\IReRetractable.cs" />
     <Compile Include="Assets\Scripts\UserControls\EnginePropulsionControl.cs" />
-    <Compile Include="Assets\Scripts\Autopilot\BasicPhasePosProvider.cs" />
     <Compile Include="Assets\Scripts\RocketParts\RocketEngine.cs" />
     <Compile Include="Assets\Scripts\CustomAttributes\ReadOnlyFieldAttribute.cs" />
-    <Compile Include="Assets\Scripts\RocketParts\Interfaces\ITiltController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -731,6 +730,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="st.one-line.Editor.csproj">
+      <Project>{2F960684-A215-A34C-FC35-3C8F0EB41D90}</Project>
+      <Name>st.one-line.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="st.one-line.Runtime.csproj">
+      <Project>{808CED1E-A4CD-A0EA-0685-355C5C018DC4}</Project>
+      <Name>st.one-line.Runtime</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

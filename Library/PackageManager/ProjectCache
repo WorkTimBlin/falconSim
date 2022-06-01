@@ -5,18 +5,26 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637890615318250670
-    m_Hash: 205060150
+      ticks: 637897043678759620
+    m_Hash: 1026700998
   m_LockFileStatus:
     m_FilePath: D:/programming/tryings/unity/projs/falcon sim/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637890615318570699
-    m_Hash: 1191127047
+      ticks: 637897043793566258
+    m_Hash: 252574160
 m_EmbeddedPackageManifests:
-  m_ManifestsStatus: {}
+  m_ManifestsStatus:
+    D:/programming/tryings/unity/projs/falcon sim/Packages/one-line-master/package.json:
+      m_FilePath: D:/programming/tryings/unity/projs/falcon sim/Packages/one-line-master/package.json
+      m_PathExists: 1
+      m_ContentTrackingEnabled: 1
+      m_ModificationDate:
+        serializedVersion: 2
+        ticks: 637465520990000000
+      m_Hash: 1546631727
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: D:/programming/tryings/unity/projs/falcon sim/Packages
@@ -2495,6 +2503,107 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 1.0.0
+    nextVersion: 
+- packageId: st.rect-ex@https://github.com/slavniyteo/rect-ex.git#master
+  testable: 0
+  isDirectDependency: 1
+  version: 0.2.1
+  source: 5
+  resolvedPath: D:\programming\tryings\unity\projs\falcon sim\Library\PackageCache\st.rect-ex@c8c32b33ce
+  assetPath: Packages/st.rect-ex
+  name: st.rect-ex
+  displayName: RectEx
+  author:
+    name: Slavniyteo
+    email: 
+    url: 
+  category: 
+  type: 
+  description: RectEx improves working with Rect class and drawing pure EditorGUI
+    elements.
+  status: 4
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    verified: 
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - editor
+  - unity
+  - inspector
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+- packageId: st.one-line@file:D:\programming\tryings\unity\projs\falcon sim\Packages\one-line-master
+  testable: 1
+  isDirectDependency: 1
+  version: 0.5.1
+  source: 3
+  resolvedPath: D:\programming\tryings\unity\projs\falcon sim\Packages\one-line-master
+  assetPath: Packages/st.one-line
+  name: st.one-line
+  displayName: OneLine
+  author:
+    name: Slavniyteo
+    email: 
+    url: 
+  category: 
+  type: 
+  description: Draw any object in the inspector into a single line.
+  status: 4
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    verified: 
+  dependencies:
+  - name: st.rect-ex
+    version: 0.2.1
+  resolvedDependencies:
+  - name: st.rect-ex
+    version: 0.2.1
+  keywords:
+  - editor
+  - unity
+  - inspector
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/d4160/one-line.git
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
     nextVersion: 
 - packageId: com.unity.modules.subsystems@1.0.0
   testable: 0

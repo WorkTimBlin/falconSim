@@ -20,32 +20,15 @@ public class EngineTiltControl : MonoBehaviour, ITiltController
 	KeyCode back;
 
 
-	public Vector2 ControlSignal
-	{
-		get;
-		private set;
-	}
+	public Vector2 ControlSignal =>
+		(Vector2.zero +
+		(Input.GetKey(right) ? Vector2.right : Vector2.zero) +
+		(Input.GetKey(left) ? Vector2.left : Vector2.zero) +
+		(Input.GetKey(front) ? Vector2.down : Vector2.zero) +
+		(Input.GetKey(back) ? Vector2.up : Vector2.zero)) *
+		EngineTilt.MaxAngle;
 
 
-
-	// Update is called once per frame
-	void Update()
-	{
-		UpdateTilt();
-	}
-
-	void UpdateTilt()
-	{
-		Vector2 ControlSignal = Vector2.zero;
-		if (Input.GetKey(right))
-			ControlSignal.x += EngineTilt.MaxAngle;
-		if (Input.GetKey(left))
-			ControlSignal.x -= EngineTilt.MaxAngle;
-		if (Input.GetKey(front))
-			ControlSignal.y -= EngineTilt.MaxAngle;
-		if (Input.GetKey(back))
-			ControlSignal.y += EngineTilt.MaxAngle;
-	}
 	private void OnValidate()
 	{
 		engineTilt = 

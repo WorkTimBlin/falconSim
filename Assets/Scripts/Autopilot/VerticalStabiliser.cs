@@ -10,8 +10,6 @@ using UnityEngine;
 public class VerticalStabiliser : MonoBehaviour, ITiltController
 {
 	[SerializeField]
-	private float idealLandingSpeed = 0.5f;
-	[SerializeField]
 	private MonoBehaviour rocketEngine;
 	[SerializeField]
 	private MonoBehaviour engineTilt;
@@ -34,32 +32,46 @@ public class VerticalStabiliser : MonoBehaviour, ITiltController
 	private ITiltableParameters EngineTilt => (ITiltableParameters)engineTilt;
 	private float DistanceToGround => transform.position.y;
 
-	public Vector2 ControlSignal { get; set; }
+	public Vector2 ControlSignal =>
+		AntiDeviationVector * verticalDeviationCoeficient + 
+		AntiVelocityVector * velocityCoeficient;
 
-	private void Update()
+	Vector2 AntiDeviationVector
 	{
-		Vector3 globalVertical = 
-			transform.InverseTransformDirection(Vector3.up);
-		Vector3 localAngularVelocity =
-			transform.InverseTransformDirection(rocketRigidbody.angularVelocity);
-		
-		Vector2 localBottomVelocity =
-			new Vector2(localAngularVelocity.z, localAngularVelocity.x);
-		antiDeviationVector = 
-			new Vector2(globalVertical.x, -globalVertical.z) *
-			EngineTilt.MaxAngle;
-		antiVelocityVector = Vector2.ClampMagnitude(
-			localBottomVelocity * 
-			EngineTilt.MaxAngle, 50);
+		get
+		{
+			Vector3 globalVertical =
+			   transform.InverseTransformDirection(Vector3.up);
+			return antiDeviationVector =
+				new Vector2(globalVertical.x, -globalVertical.z) *
+				EngineTilt.MaxAngle;
+		}
+	}
 
-		ControlSignal =
-			antiDeviationVector * verticalDeviationCoeficient + 
-			antiVelocityVector * velocityCoeficient;
+	Vector2 AntiVelocityVector
+	{
+		get
+		{
+			Vector3 localAngularVelocity =
+			transform.InverseTransformDirection(rocketRigidbody.angularVelocity);
+			Vector2 localBottomVelocity =
+			new Vector2(localAngularVelocity.z, localAngularVelocity.x);
+			return antiVelocityVector = 
+				Vector2.ClampMagnitude(
+				localBottomVelocity *
+				EngineTilt.MaxAngle, 50);
+		}
 	}
 
 	private void OnValidate()
 	{
-		rocketEngine = rocketEngine?.GetComponent<IRocketEngineParameters>() as MonoBehaviour;
-		engineTilt = engineTilt?.GetComponent<ITiltableParameters>() as MonoBehaviour;
+		rocketEngine = 
+			InterfaceValidationHelper.
+			GetInterfaceAsMonoBehaviour
+			<IRocketEngineParameters>(rocketEngine);
+		engineTilt = 
+			InterfaceValidationHelper.
+			GetInterfaceAsMonoBehaviour
+			<ITiltableParameters>(engineTilt);
 	}
 }

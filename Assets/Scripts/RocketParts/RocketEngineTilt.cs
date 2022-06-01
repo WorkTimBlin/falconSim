@@ -77,7 +77,7 @@ public class RocketEngineTilt : MonoBehaviour, ITiltableParameters
 
 public static class InterfaceValidationHelper
 {
-	public static InterfaceT? 
+	public static InterfaceT 
 		GetInterface<InterfaceT>(MonoBehaviour monoBehaviour) 
 		where InterfaceT : class
 	{
@@ -85,7 +85,7 @@ public static class InterfaceValidationHelper
 			monoBehaviour?.GetComponent<InterfaceT>();
 	}
 
-	public static MonoBehaviour?
+	public static MonoBehaviour
 		GetInterfaceAsMonoBehaviour<InterfaceT>(MonoBehaviour monoBehaviour) 
 		where InterfaceT : class =>
 		GetInterface<InterfaceT>(monoBehaviour) as MonoBehaviour;

@@ -99,6 +99,21 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "st.one-line": {
+      "version": "file:one-line-master",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "st.rect-ex": "0.2.1"
+      }
+    },
+    "st.rect-ex": {
+      "version": "https://github.com/slavniyteo/rect-ex.git#master",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c8c32b33ce250aa927de7f6c79ae7c0b6eab36cb"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
