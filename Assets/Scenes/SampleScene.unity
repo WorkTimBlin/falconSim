@@ -399,6 +399,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1745874105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8563531372456059566, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
+  m_PrefabInstance: {fileID: 548142111852812855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745874116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745874105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e103ed1d7e7c88a4f8751fb1da44ab35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelFeed: 19.62
+  isControlledByPlayer: 0
 --- !u!1001 &548142111852812855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,6 +425,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1118133224, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
+      propertyPath: fuelProvider
+      value: 
+      objectReference: {fileID: 1745874116}
     - target: {fileID: 604020110104342933, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -449,6 +472,14 @@ PrefabInstance:
     - target: {fileID: 604020110104342933, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 34.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010464649707388765, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
+      propertyPath: fuelTank
+      value: 
+      objectReference: {fileID: 1745874116}
+    - target: {fileID: 6010464649707388765, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
+      propertyPath: propulsionChangeSpeed
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8563531372456059566, guid: 97033f831ed6a66478cf488aaa9f97b6, type: 3}
       propertyPath: m_Name

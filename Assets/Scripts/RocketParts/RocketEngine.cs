@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketEngine : MonoBehaviour, IRocketEngineParameters
+public class RocketEngine : MonoBehaviour, IRocketEngineParameters, IFuelConsumer
 {
+
+	[SerializeReference]
+	MonoBehaviour fuelProvider;
+
+	IFuelProvider FuelProvider => fuelProvider as IFuelProvider;
+
 	public float Consumption
 	{
-		get => currentConsumtion;
+		get => currentConsumption;
 		set => 
-			currentConsumtion = Mathf.Clamp(value, minConsumption, maxConsumption);
+			currentConsumption = Mathf.Clamp(value, minConsumption, maxConsumption);
 	}
 	public float MaxConsumption => maxConsumption;
 	public float MaxPropulsion => maxPropultion;
 	
-	public float Propultion => currentConsumtion * maxPropultion / maxConsumption;
+	public float Propultion => Consumption * maxPropultion / maxConsumption;
 
-	
+	public float FuelConsumedThisFrame => Consumption;
+
 	[Space]
 	[SerializeField]
-	float currentConsumtion;
+	float currentConsumption;
 	
 	[SerializeField]
 	float maxPropultion = 20;
@@ -42,6 +49,7 @@ public class RocketEngine : MonoBehaviour, IRocketEngineParameters
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		Consumption = FuelProvider.ConsumeFuel(this);
 		Propulse();
 	}
 
@@ -51,4 +59,13 @@ public class RocketEngine : MonoBehaviour, IRocketEngineParameters
 			transform.up * Propultion, 
 			transform.position);
 	}
+
+	private void OnValidate()
+	{
+		fuelProvider =
+			InterfaceValidationHelper.
+			GetInterfaceAsMonoBehaviour
+			<IFuelProvider>(fuelProvider);
+	}
+
 }

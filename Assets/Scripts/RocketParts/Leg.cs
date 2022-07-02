@@ -9,17 +9,14 @@ public class Leg : MonoBehaviour, IReRetractable
 	public float ExpectedRetractingTime => 
 		ExpectedExtendingTime;
 
-	[SerializeField]
-	float fullExtendedPosition = 115;
-	[SerializeField]
-	float fullRetractedPosition = 0;
-	[SerializeField]
-	float retractionSpeed = 10;
-	[SerializeField]
-	bool startExtended;
+	[SerializeField] private float fullExtendedPosition = 115;
+	[SerializeField] private float fullRetractedPosition = 0;
+	[SerializeField] private float retractionSpeed = 10;
+	[SerializeField] private bool startExtended;
 
-	Coroutine currentCoroutine;
-	float CurrentPosition
+	private Coroutine currentCoroutine;
+
+	private float CurrentPosition
 	{
 		get => transform.localRotation.eulerAngles.z;
 		set
@@ -29,7 +26,8 @@ public class Leg : MonoBehaviour, IReRetractable
 			transform.localRotation = Quaternion.Euler(angles);
 		}
 	}
-	float CurrentExtentionPercent
+
+	private float CurrentExtentionPercent
 	{
 		get => (CurrentPosition - fullRetractedPosition) * 100 /
 			(fullExtendedPosition - fullRetractedPosition);

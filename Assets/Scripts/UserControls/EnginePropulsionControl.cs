@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnginePropulsionControl : MonoBehaviour
 {
-	[SerializeField]
-	MonoBehaviour engine;
+	[SerializeReference]
+	InfiniteFuelTank fuelTank;
 	[SerializeField]
 	float propulsionChangeSpeed = 20;
 
@@ -18,8 +18,6 @@ public class EnginePropulsionControl : MonoBehaviour
 	float fuelFeed = 20;
 
 
-	IRocketEngineParameters Engine => (IRocketEngineParameters)engine;
-
 	// Update is called once per frame
 	void Update()
 	{
@@ -28,16 +26,10 @@ public class EnginePropulsionControl : MonoBehaviour
 
 	void UpdatePropulsion()
 	{
-		Engine.Consumption = fuelFeed;
 		if (Input.GetKey(higher))
-			Engine.Consumption += propulsionChangeSpeed * Time.deltaTime;
+			fuelTank.FuelFeed += propulsionChangeSpeed * Time.deltaTime;
 		if (Input.GetKey(lower))
-			Engine.Consumption -= propulsionChangeSpeed * Time.deltaTime;
-		fuelFeed = Engine.Consumption;
-	}
-
-	private void OnValidate()
-	{
-		engine = engine?.GetComponent<IRocketEngineParameters>() as MonoBehaviour;
+			fuelTank.FuelFeed -= propulsionChangeSpeed * Time.deltaTime;
+		fuelFeed = fuelTank.FuelFeed;
 	}
 }

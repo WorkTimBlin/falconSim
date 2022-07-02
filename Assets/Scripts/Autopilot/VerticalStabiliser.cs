@@ -25,7 +25,7 @@ public class VerticalStabiliser : MonoBehaviour, ITiltController
 	[SerializeField]
 	float velocityCoeficient = 1;
 	[SerializeField]
-	[GraphicRepresentField(50)]
+	//[GraphicRepresentField(50)]
 	Vector2 antiVelocityVector;
 
 	private IRocketEngineParameters Engine => (IRocketEngineParameters)rocketEngine;
@@ -47,7 +47,7 @@ public class VerticalStabiliser : MonoBehaviour, ITiltController
 				EngineTilt.MaxAngle;
 		}
 	}
-
+	
 	Vector2 AntiVelocityVector
 	{
 		get
